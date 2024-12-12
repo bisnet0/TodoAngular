@@ -8,7 +8,7 @@ import { Tarefa } from '../../Tarefa';
 })
 export class TaskService {
 
-  private apiUrl = 'http://localhost:2858/tasks/';
+  private apiUrl = 'http://localhost:5240/tasks';
 
   constructor(private http: HttpClient) { }
   getTasks() : Observable <Tarefa[]>{
@@ -17,6 +17,10 @@ export class TaskService {
 
   deleteTask(tarefa:Tarefa): Observable<Tarefa>{
     return this.http.delete<Tarefa>(`${this.apiUrl}/${tarefa.id}`);
+  }
+
+  updateTask(tarefa:Tarefa): Observable<Tarefa>{
+    return this.http.put<Tarefa>(`${this.apiUrl}/${tarefa.id}`, tarefa);
   }
 }
 
